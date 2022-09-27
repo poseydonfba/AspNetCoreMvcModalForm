@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "numeral.js@2.0.6",
+      "destination": "wwwroot/lib/numeral.js/"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "datatables-buttons@2.2.3",
+      "destination": "wwwroot/lib/datatables-buttons/"
+    },
+    {
+      "library": "jszip@3.10.1",
+      "destination": "wwwroot/lib/jszip/"
+    },
+    {
+      "library": "moment.js@2.29.4",
+      "destination": "wwwroot/lib/moment.js/"
+    },
+    {
+      "library": "jquery-price-format@2.2.0",
+      "destination": "wwwroot/lib/jquery-price-format/"
+    },
+    {
+      "library": "font-awesome@6.2.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "datatables-responsive@2.3.0",
+      "destination": "wwwroot/lib/datatables-responsive/"
+    }
+  ]
+}

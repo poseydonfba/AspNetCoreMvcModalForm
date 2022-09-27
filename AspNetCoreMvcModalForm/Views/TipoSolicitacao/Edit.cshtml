@@ -1,0 +1,27 @@
+﻿@model AspNetCoreMvcModalForm.Business.Models.TipoSolicitacao
+
+@{
+    Layout = null;
+}
+
+<vc:summary></vc:summary>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" onsubmit="return jQueryModalPost(this);">
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

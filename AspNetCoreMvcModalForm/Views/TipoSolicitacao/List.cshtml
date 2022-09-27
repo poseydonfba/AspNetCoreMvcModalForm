@@ -1,0 +1,14 @@
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery antiforgeryProvider
+@model IEnumerable<AspNetCoreMvcModalForm.Business.Models.TipoSolicitacao>
+
+@{
+    ViewData["Title"] = "Tipo de Solicitações";
+    Layout = null;
+}
+
+@await Html.PartialAsync("_ViewAll", Model)
+
+<input id="requestToken" type="hidden" value="@antiforgeryProvider.GetAndStoreTokens(this.Context).RequestToken" />
+
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/TipoSolicitacao.js"></script>
