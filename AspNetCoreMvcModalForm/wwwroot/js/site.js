@@ -36,7 +36,7 @@ $(document).ready(function () {
         try {
             var reloadElementId = $(e).attr("data-element-reload");
             if ($("#" + modalId).length == 0) {
-                $.get("/Solicitacoes/ModalForm", { modalId: modalId }, function (modalFormHtml) {
+                $.get("/Home/ModalForm", { modalId: modalId }, function (modalFormHtml) {
                     $("body").append(modalFormHtml);
                     $.ajax({
                         type: 'GET',

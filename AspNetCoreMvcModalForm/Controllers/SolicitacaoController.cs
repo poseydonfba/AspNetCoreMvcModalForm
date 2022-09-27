@@ -40,8 +40,6 @@ namespace AspNetCoreMvcModalForm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetDataTable()
         {
-            await Task.Delay(1000);
-
             var draw = Request.Form["draw"].FirstOrDefault();
             var start = Request.Form["start"].FirstOrDefault();
             var length = Request.Form["length"].FirstOrDefault();
@@ -51,7 +49,6 @@ namespace AspNetCoreMvcModalForm.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var sortColumnDirectionMinus = sortColumnDirection.Equals("desc") ? "-" : "";
 
             var isDataDateTime = DateTime.TryParse(searchValue, out DateTime dataSolicitacao);
 
@@ -85,7 +82,7 @@ namespace AspNetCoreMvcModalForm.Controllers
                     Valor = isValorDecimal ? valor : default(decimal?),
                     Offset = skip,
                     Limit = pageSize,
-                    Sort = sortColumnDirectionMinus + sortColumn
+                    Sort = sortColumnDirection + sortColumn
                 };
 
                 var solicitacoes = _context.Solicitacoes.Include(x => x.TipoSolicitacao).AsQueryable().Filter(solicitacaoFilter);

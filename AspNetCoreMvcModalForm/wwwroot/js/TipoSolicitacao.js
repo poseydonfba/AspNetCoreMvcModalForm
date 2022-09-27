@@ -33,7 +33,7 @@ function LoadTableTipoSolicitacao() {
         destroy: true,
         responsive: true,
         ajax: {
-            url: "/TipoSolicitacoes/GetDataTable",
+            url: "/TipoSolicitacao/GetDataTable",
             type: "POST",
             datatype: "json",
             data: {
@@ -45,9 +45,9 @@ function LoadTableTipoSolicitacao() {
             {
                 data: null, className: "text-center",
                 render: function (data, row) {
-                    var modalDetail = "jQueryModalGet(this, '/TipoSolicitacoes/Details/" + data.id + "', 'Delathes do tipo da solicitação', 'modalTipoSolicitacao')";
-                    var modalEdit = "jQueryModalGet(this, '/TipoSolicitacoes/Edit/" + data.id + "', 'Atualizar tipo de solicitação', 'modalTipoSolicitacao')";
-                    var modalDelete = "jQueryModalGet(this, '/TipoSolicitacoes/Delete/" + data.id + "', 'Excluir tipo de solicitação', 'modalTipoSolicitacao')";
+                    var modalDetail = "jQueryModalGet(this, '/TipoSolicitacao/Details/" + data.id + "', 'Delathes do tipo da solicitação', 'modalTipoSolicitacao')";
+                    var modalEdit = "jQueryModalGet(this, '/TipoSolicitacao/Edit/" + data.id + "', 'Atualizar tipo de solicitação', 'modalTipoSolicitacao')";
+                    var modalDelete = "jQueryModalGet(this, '/TipoSolicitacao/Delete/" + data.id + "', 'Excluir tipo de solicitação', 'modalTipoSolicitacao')";
                     return '<a onclick="' + modalDetail + '" class="ml-1 mr-1"><i class="far fa-sticky-note"></i></a>' +
                         '<a onclick="' + modalEdit + '" class="ml-1 mr-1"><i class="far fa-edit"></i></a>' +
                         '<a onclick="' + modalDelete + '" class="ml-1 mr-1"><i class="far fa-trash-alt"></i></a>';

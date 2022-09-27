@@ -7,10 +7,7 @@ using AspNetCoreMvcModalForm.Helpers;
 using AspNetCoreMvcModalForm.Models.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
 
 namespace AspNetCoreMvcModalForm.Controllers
 {
@@ -48,14 +45,13 @@ namespace AspNetCoreMvcModalForm.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var sortColumnDirectionMinus = sortColumnDirection.Equals("desc") ? "-" : "";
 
             var filter = new TipoSolicitacaoFilter
             {
                 Descricao = string.IsNullOrEmpty(searchValue) ? null : searchValue,
                 Offset = skip,
                 Limit = pageSize,
-                Sort = sortColumnDirectionMinus + sortColumn
+                Sort = sortColumnDirection + sortColumn
             };
 
             var result = _context.TipoSolicitacoes.AsQueryable().Filter(filter);

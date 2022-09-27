@@ -31,20 +31,20 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label asp-for="TipoSolicitacaoId" class="control-label"></label>
-                        <select asp-for="TipoSolicitacaoId" class="form-control" asp-items="@(new MultiSelectList(ViewBag.Tipos, "Id", "Descricao"))"><option></option></select>
+                        <select asp-for="TipoSolicitacaoId" class="form-control" asp-items="ViewBag.TipoSolicitacaoId"></select>
                         <span asp-validation-for="TipoSolicitacaoId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label">&nbsp;</label>
-                        <a data-element-reload="#TipoSolicitacaoId" title="Novo tipo de solicitação" onclick="jQueryModalGet(this, '@Url.Action("Create", "TipoSolicitacoes")', 'Novo Tipo de solicitação', 'modalTipoSolicitacao')" class="btn btn-primary text-white form-control"><i class="fas fa-plus"></i> </a>
+                        <a data-element-reload="#TipoSolicitacaoId" title="Novo tipo de solicitação" onclick="jQueryModalGet(this, '@Url.Action("Create", "TipoSolicitacao")', 'Novo Tipo de solicitação', 'modalTipoSolicitacao')" class="btn btn-primary text-white form-control"><i class="fas fa-plus"></i> </a>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label">&nbsp;</label>
-                        <a title="Lista de Tipo de Solicitações" onclick="jQueryModalGet(this, '@Url.Action("List", "TipoSolicitacoes")', 'Novo Tipo de solicitação', 'modalTipoSolicitacaoList')" class="btn btn-primary text-white form-control"><i class="fas fa-list"></i> </a>
+                        <a title="Lista de Tipo de Solicitações" onclick="jQueryModalGet(this, '@Url.Action("List", "TipoSolicitacao")', 'Novo Tipo de solicitação', 'modalTipoSolicitacaoList')" class="btn btn-primary text-white form-control"><i class="fas fa-list"></i> </a>
                     </div>
                 </div>
             </div>
