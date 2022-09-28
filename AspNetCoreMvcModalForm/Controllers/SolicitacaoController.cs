@@ -51,6 +51,7 @@ namespace AspNetCoreMvcModalForm.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
+            var sortColumnDirectionMinus = sortColumnDirection.Equals("desc") ? "-" : "";
 
             var isDataDateTime = DateTime.TryParse(searchValue, out DateTime dataSolicitacao);
 
@@ -68,7 +69,7 @@ namespace AspNetCoreMvcModalForm.Controllers
                 recordsTotal = await solicitacoes.CountAsync();
 
                 var data = solicitacoes.Skip(skip).Take(pageSize).ToList();
-                var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
+                var jsonData = new { draw, recordsFiltered = recordsTotal, recordsTotal, data };
                 return Ok(jsonData);
             }
             else
@@ -84,7 +85,7 @@ namespace AspNetCoreMvcModalForm.Controllers
                     Valor = isValorDecimal ? valor : default(decimal?),
                     Offset = skip,
                     Limit = pageSize,
-                    Sort = sortColumnDirection + sortColumn
+                    Sort = sortColumnDirectionMinus + sortColumn
                 };
 
                 var solicitacoes = _context.Solicitacoes.Include(x => x.TipoSolicitacao).AsQueryable().Filter(solicitacaoFilter);
@@ -92,7 +93,7 @@ namespace AspNetCoreMvcModalForm.Controllers
                 recordsTotal = await solicitacoes.CountAsync();
 
                 var data = await solicitacoes.Sort(solicitacaoFilter).Paginate(solicitacaoFilter).ToListAsync();
-                var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
+                var jsonData = new { draw, recordsFiltered = recordsTotal, recordsTotal, data };
                 return Ok(jsonData);
             }
         }

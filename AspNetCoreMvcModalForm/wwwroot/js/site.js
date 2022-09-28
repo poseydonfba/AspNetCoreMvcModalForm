@@ -49,14 +49,17 @@ $(document).ready(function () {
                     $('#' + modalId + '').attr("data-element-reload", reloadElementId);
                 },
                 error: function (err) {
+                    console.log("jQueryModalGet");
                     console.log(err);
                 }
             });
             return false;
         } catch (ex) {
+            console.log("jQueryModalGet");
             console.log(ex);
             return false;
         }
+        return false;
     }
     jQueryModalPost = form => {
         try {

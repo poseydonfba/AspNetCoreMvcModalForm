@@ -45,13 +45,14 @@ namespace AspNetCoreMvcModalForm.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
+            var sortColumnDirectionMinus = sortColumnDirection.Equals("desc") ? "-" : "";
 
             var filter = new TipoSolicitacaoFilter
             {
                 Descricao = string.IsNullOrEmpty(searchValue) ? null : searchValue,
                 Offset = skip,
                 Limit = pageSize,
-                Sort = sortColumnDirection + sortColumn
+                Sort = sortColumnDirectionMinus + sortColumn
             };
 
             var result = _context.TipoSolicitacoes.AsQueryable().Filter(filter);
@@ -59,7 +60,7 @@ namespace AspNetCoreMvcModalForm.Controllers
             recordsTotal = await result.CountAsync();
 
             var data = await result.Sort(filter).Paginate(filter).ToListAsync();
-            var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
+            var jsonData = new { draw, recordsFiltered = recordsTotal, recordsTotal, data };
             return Ok(jsonData);
         }
 

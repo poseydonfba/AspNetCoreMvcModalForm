@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment HostingEnvironment
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,7 +60,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap5.min.js"></script>
     <script src="~/lib/datatables-rowgroup/js/dataTables.rowGroup.min.js"></script>
@@ -78,11 +79,41 @@
     <script src="~/lib/numeral.js/locales.min.js"></script>
     <script src="~/lib/moment.js/moment.min.js"></script>
     <script src="~/lib/moment.js/moment-with-locales.js"></script>
+    @{
+        var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    }
     <script>
-        numeral.locale('pt-br');
-        moment.locale("pt-br");
+        numeral.locale('@culture');
+        moment.locale("@culture");
+        var dataTableConfig = {
+            processing: false,
+            serverSide: true,
+            filter: true,
+            destroy: true,
+            responsive: true,
+            lengthChange: false,
+            paging: true,
+            searching: true,
+            info: true,
+            autoWidth: false,
+            language: {
+                url: "@Url.Content($"~/lib/datatables/lang/{culture}.json")"
+            },
+            buttons: [
+                {
+                    extend: 'pageLength',
+                    className: 'btn-sm'
+                }
+            ],
+            initComplete: function () {
+                var _api = this.api();
+                _api.buttons().container()
+                    .appendTo('#' + _api.table().container().id + ' .col-md-6:eq(0)');
+            }
+        };
+        $.extend(true, $.fn.dataTable.defaults, dataTableConfig);
     </script>
-    
+
     <script src="~/lib/chart.js/chart.min.js"></script>
     <script src="~/lib/chart.js/chartjs-plugin-datalabels.min.js"></script>
     <script src="~/lib/chart.js/chartjs-plugin-autocolors.js"></script>
