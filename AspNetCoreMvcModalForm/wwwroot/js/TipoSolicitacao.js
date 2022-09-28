@@ -26,7 +26,6 @@ function jQueryModalDeleteExecute_modalTipoSolicitacao(res, modalId) {
 }
 
 function LoadTableTipoSolicitacao() {
-    alert("LoadTableTipoSolicitacao");
     tableTipoSolicitacao = $("#tableTipoSolicitacao").DataTable({
         ajax: {
             url: "/TipoSolicitacao/GetDataTable",
