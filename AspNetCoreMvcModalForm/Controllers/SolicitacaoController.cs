@@ -174,6 +174,7 @@ namespace AspNetCoreMvcModalForm.Controllers
                 return NotFound();
             }
 
+            ModelState.Remove("TipoSolicitacao");
             if (ModelState.IsValid)
             {
                 try

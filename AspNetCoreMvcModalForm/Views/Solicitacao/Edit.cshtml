@@ -31,7 +31,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label asp-for="TipoSolicitacaoId" class="control-label"></label>
-                        <select asp-for="TipoSolicitacaoId" class="form-control" asp-items="@(new MultiSelectList(ViewBag.Tipos, "Id", "Descricao"))"><option></option></select>
+                        <select asp-for="TipoSolicitacaoId" class="form-control" asp-items="ViewBag.TipoSolicitacaoId"></select>
                         <span asp-validation-for="TipoSolicitacaoId" class="text-danger"></span>
                     </div>
                 </div>
