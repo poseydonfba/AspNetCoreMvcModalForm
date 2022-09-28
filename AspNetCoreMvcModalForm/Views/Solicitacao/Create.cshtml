@@ -7,48 +7,48 @@
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Create" onsubmit="return jQueryModalPost(this);">
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Data" class="control-label"></label>
                 <input asp-for="Data" class="form-control" />
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Quantidade" class="control-label"></label>
                 <input asp-for="Quantidade" class="form-control" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <label asp-for="Valor" class="control-label"></label>
                 <input asp-for="Valor" class="form-control price" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label asp-for="TipoSolicitacaoId" class="control-label"></label>
                         <select asp-for="TipoSolicitacaoId" class="form-control" asp-items="ViewBag.TipoSolicitacaoId"></select>
                         <span asp-validation-for="TipoSolicitacaoId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label class="control-label">&nbsp;</label>
                         <a data-element-reload="#TipoSolicitacaoId" title="Novo tipo de solicitação" onclick="jQueryModalGet(this, '@Url.Action("Create", "TipoSolicitacao")', 'Novo Tipo de solicitação', 'modalTipoSolicitacao')" class="btn btn-primary text-white form-control"><i class="fas fa-plus"></i> </a>
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <label class="control-label">&nbsp;</label>
                         <a title="Lista de Tipo de Solicitações" onclick="jQueryModalGet(this, '@Url.Action("List", "TipoSolicitacao")', 'Novo Tipo de solicitação', 'modalTipoSolicitacaoList')" class="btn btn-primary text-white form-control"><i class="fas fa-list"></i> </a>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

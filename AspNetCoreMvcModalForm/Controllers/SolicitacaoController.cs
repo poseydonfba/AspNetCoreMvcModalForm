@@ -6,9 +6,11 @@ using AspNetCoreMvcModalForm.Data.Context;
 using AspNetCoreMvcModalForm.Helpers;
 using AspNetCoreMvcModalForm.Models.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Dynamic.Core; // Install System.Linq.Dynamic.Core
 using System.Threading.Tasks;
@@ -130,16 +132,15 @@ namespace AspNetCoreMvcModalForm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Descricao,Data,Quantidade,Valor,TipoSolicitacaoId,Id")] Solicitacao solicitacao)
         {
+            ModelState.Remove("TipoSolicitacao");
             if (ModelState.IsValid)
             {
                 solicitacao.Id = Guid.NewGuid();
                 _context.Add(solicitacao);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
                 return Json(new { isValid = true, html = string.Empty, model = solicitacao });
             }
             ViewData["TipoSolicitacaoId"] = new SelectList(_context.TipoSolicitacoes, "Id", "Descricao", solicitacao.TipoSolicitacaoId);
-            //return View(solicitacao);
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, nameof(Create), solicitacao) });
         }
 

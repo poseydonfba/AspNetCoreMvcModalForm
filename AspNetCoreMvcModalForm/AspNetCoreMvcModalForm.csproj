@@ -28,4 +28,8 @@
     <ProjectReference Include="..\AspNetCoreMvcModalForm.Data\AspNetCoreMvcModalForm.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\datatables-responsive\css\" />
+  </ItemGroup>
+
 </Project>

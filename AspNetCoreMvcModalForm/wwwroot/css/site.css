@@ -16,3 +16,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.modal-body .alert {
+    margin-top: -1rem !important;
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+}

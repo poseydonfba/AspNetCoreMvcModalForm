@@ -1,8 +1,10 @@
 using AspNetCoreMvcModalForm.Business.Intefaces;
+using AspNetCoreMvcModalForm.Business.Notificacoes;
 using AspNetCoreMvcModalForm.Data.Context;
 using AspNetCoreMvcModalForm.Data.Repository;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,11 +17,19 @@ builder.Services.AddEntityFrameworkNpgsql()
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<INotificador, Notificador>();
+
+// Localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Language");
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    var supportedCultures = new[] { new CultureInfo("pt-BR") };
-    options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
+    var supportedCultures = new[]
+    {
+        new CultureInfo("pt-BR")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(supportedCultures[0]);
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
@@ -38,6 +48,20 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Localization
+var localizationOptions = app
+               .Services
+               .GetService<IOptions<RequestLocalizationOptions>>()?
+               .Value;
+app.UseRequestLocalization(localizationOptions);
+
+//var supportedCultures = new[] { "pt-BR" };
+//var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+//    .AddSupportedCultures(supportedCultures)
+//    .AddSupportedUICultures(supportedCultures);
+
+//app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthorization();
 

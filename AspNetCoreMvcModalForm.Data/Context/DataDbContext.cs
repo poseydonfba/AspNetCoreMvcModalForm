@@ -15,7 +15,10 @@ namespace AspNetCoreMvcModalForm.Data.Context
 {
     public class DataDbContext : DbContext
     {
-        public DataDbContext(DbContextOptions<DataDbContext> options) : base(options) { }
+        public DataDbContext(DbContextOptions<DataDbContext> options) : base(options) 
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         public DbSet<Solicitacao> Solicitacoes { get; set; }
         public DbSet<TipoSolicitacao> TipoSolicitacoes { get; set; }

@@ -35,43 +35,23 @@ $(document).ready(function () {
     jQueryModalGet = (e, url, title, modalId) => {
         try {
             var reloadElementId = $(e).attr("data-element-reload");
-            if ($("#" + modalId).length == 0) {
-                $.get("/Home/ModalForm", { modalId: modalId }, function (modalFormHtml) {
-                    $("body").append(modalFormHtml);
-                    $.ajax({
-                        type: 'GET',
-                        url: url,
-                        contentType: false,
-                        processData: false,
-                        success: function (res) {
-                            $('#' + modalId + ' .modal-body').html(res);
-                            $('#' + modalId + ' .modal-title').html(title);
-                            $('#' + modalId + '').modal('show');
-                            $('#' + modalId + '').attr("data-element-reload", reloadElementId);
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    })
-                });
-            }
-            else {
-                $.ajax({
-                    type: 'GET',
-                    url: url,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        $('#' + modalId + ' .modal-body').html(res);
-                        $('#' + modalId + ' .modal-title').html(title);
-                        $('#' + modalId + '').modal('show');
-                        $('#' + modalId + '').attr("data-element-reload", reloadElementId);
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                })
-            }
+            if ($("#" + modalId).length == 0)
+                $("body").append(ModalFormTemplate(modalId));
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $('#' + modalId + ' .modal-body').html(res);
+                    $('#' + modalId + ' .modal-title').html(title);
+                    $('#' + modalId + '').modal('show');
+                    $('#' + modalId + '').attr("data-element-reload", reloadElementId);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
             return false;
         } catch (ex) {
             console.log(ex);
@@ -134,5 +114,22 @@ $(document).ready(function () {
             console.log(ex);
         }
         return false;
+    }
+
+    function ModalFormTemplate(modalId) {
+        var template = `
+<div id="[id]" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>`;
+        return template.replace("[id]", modalId);
     }
 });

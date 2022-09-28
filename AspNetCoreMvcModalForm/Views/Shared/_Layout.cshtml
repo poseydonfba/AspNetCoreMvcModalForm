@@ -8,10 +8,10 @@
 
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="~/lib/datatables-rowgroup/css/rowGroup.bootstrap4.min.css" />
-    @*<link rel="stylesheet" href="~/lib/datatables-responsive/responsive.bootstrap4.min.css" />*@
-    @*<link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.bootstrap4.min.css" />*@
+    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="~/lib/datatables-rowgroup/css/rowGroup.bootstrap5.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables-responsive/css/responsive.bootstrap5.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables-buttons/css/buttons.bootstrap5.min.css" />
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AspNetCoreMvcModalForm.styles.css" asp-append-version="true" />
@@ -49,7 +49,9 @@
             @RenderBody()
         </main>
     </div>
-
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - AspNetCoreMvcModalForm - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -59,15 +61,15 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap5.min.js"></script>
     <script src="~/lib/datatables-rowgroup/js/dataTables.rowGroup.min.js"></script>
-    <script src="~/lib/datatables-rowgroup/js/rowGroup.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-rowgroup/js/rowGroup.bootstrap5.min.js"></script>
     <script src="~/lib/datatables-rowsgroup/dataTables.rowsGroup.min.js"></script>
-    <script src="~/lib/datatables-responsive/dataTables.responsive.min.js"></script>
-    <script src="~/lib/datatables-responsive/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/datatables-responsive/js/responsive.bootstrap5.min.js"></script>
     <script src="~/lib/datatables-sum/js/sum().js"></script>
     <script src="~/lib/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/lib/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-buttons/js/buttons.bootstrap5.min.js"></script>
     <script src="~/lib/jszip/jszip.min.js"></script>
     <script src="~/lib/datatables-buttons/js/buttons.html5.min.js"></script>
 

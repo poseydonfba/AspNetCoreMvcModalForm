@@ -1,0 +1,13 @@
+{
+  "name": "cldr-numbers-modern",
+  "version": "41.0.0",
+  "dependencies": {
+    "cldr-core": "41.0.0"
+  },
+  "main": "main/**/*.json",
+  "ignore": [
+    ".gitattributes",
+    "README.md"
+  ],
+  "license": "Unicode-DFS-2016"
+}
